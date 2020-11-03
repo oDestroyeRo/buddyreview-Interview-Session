@@ -6,7 +6,7 @@ import { NotesModule } from './notes/notes.module';
 
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://root:root@localhost'), NotesModule],
+  imports: [MongooseModule.forRoot('mongodb://root:root@db_mongo'), NotesModule],
   controllers: [AppController],
   providers: [AppService],
 })

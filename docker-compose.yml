@@ -1,15 +1,27 @@
 version: '3'
 services:
+    nestjs-backend:
+        image: nestjs-backend-image
+        container_name: nestjs-backend
+        depends_on:
+            - mongodb_container
+        restart: always
+        ports:
+            - 80:3000
+        networks:
+            - nest-back-net
     mongodb_container:
         image: 'mongo:latest'
+        container_name: db_mongo
         restart: always
         environment: 
             MONGO_INITDB_DATABASE: db-notes
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: root
-        volumes: 
-            - mongodb_data_container:/data/db
         ports: 
             - 27017:27017
-volumes:
-    mongodb_data_container:
+        networks:
+            - nest-back-net
+networks:
+    nest-back-net:
+        driver: bridge

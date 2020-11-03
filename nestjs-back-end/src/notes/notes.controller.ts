@@ -1,4 +1,5 @@
-import { Controller,Post,Body,Get,Param,Patch,Delete,HttpStatus } from '@nestjs/common';
+import { Controller,Post,Body,Get,Param,Patch,Delete,HttpStatus,Query } from '@nestjs/common';
+import { query } from 'express';
 
 import { NotesService } from './notes.service';
 
@@ -10,10 +11,12 @@ export class NotesController {
     async addNote(
         @Body('title') noteTitle: string,
         @Body('description') noteDesc: string,
+        @Body('tag') noteTag: [string],
     ) {
         const note = await this.notesService.insertNote(
             noteTitle,
             noteDesc,
+            noteTag
         );
         return {
             statusCode: HttpStatus.OK,
@@ -23,8 +26,11 @@ export class NotesController {
     }
 
     @Get()
-    async getAllnotes() {
-        const notes = await this.notesService.getNotes();
+    async getAllnotes(
+        @Query('sort') sort: string,
+        @Query('sortField') sortField: string,
+        @Query('tag') tag: [string]) {
+        const notes = await this.notesService.getNotes(sort, sortField, tag);
         return notes;
     }
 
