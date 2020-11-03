@@ -68,7 +68,7 @@ export class NotesService {
         };
     }
 
-    async updateNote(noteId: string, title: string, desc: string) {
+    async updateNote(noteId: string, title: string, desc: string, tags: [string]) {
         const updatedNote = await this.findNote(noteId);
         if (title) {
         updatedNote.title = title;

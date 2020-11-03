@@ -44,11 +44,13 @@ export class NotesController {
         @Param('id') noteId: string,
         @Body('title') noteTitle: string,
         @Body('description') noteDesc: string,
+        @Body('tag') noteTag: [string],
     ) {
         const note = await this.notesService.updateNote(
             noteId,
             noteTitle,
             noteDesc,
+            noteTag,
         );
         return {
             statusCode: HttpStatus.OK,
