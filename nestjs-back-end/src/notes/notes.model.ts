@@ -2,8 +2,8 @@ import * as mongoose from 'mongoose';
 
 export const NotesSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
-  tag: { type: [String], required: false },
+  content: { type: String, required: true },
+  tags: { type: [String], required: false },
 },{
     timestamps: true
 });
@@ -11,8 +11,8 @@ export const NotesSchema = new mongoose.Schema({
 export interface Note extends mongoose.Document {
   id: string;
   title: string;
-  description: string;
-  tag: [string];
+  content: string;
+  tags: [string];
   updatedAt: Date;
   createdAt: Date;
 }

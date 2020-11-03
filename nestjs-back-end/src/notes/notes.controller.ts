@@ -10,12 +10,12 @@ export class NotesController {
     @Post()
     async addNote(
         @Body('title') noteTitle: string,
-        @Body('description') noteDesc: string,
-        @Body('tag') noteTag: [string],
+        @Body('content') noteContent: string,
+        @Body('tags') noteTag: [string],
     ) {
         const note = await this.notesService.insertNote(
             noteTitle,
-            noteDesc,
+            noteContent,
             noteTag
         );
         return {
@@ -29,7 +29,7 @@ export class NotesController {
     async getAllnotes(
         @Query('sort') sort: string,
         @Query('sortField') sortField: string,
-        @Query('tag') tag: [string]) {
+        @Query('tags') tag: [string]) {
         const notes = await this.notesService.getNotes(sort, sortField, tag);
         return notes;
     }
@@ -43,14 +43,14 @@ export class NotesController {
     async updateNote(
         @Param('id') noteId: string,
         @Body('title') noteTitle: string,
-        @Body('description') noteDesc: string,
-        @Body('tag') noteTag: [string],
+        @Body('content') noteDesc: string,
+        @Body('tags') noteTags: [string],
     ) {
         const note = await this.notesService.updateNote(
             noteId,
             noteTitle,
             noteDesc,
-            noteTag,
+            noteTags,
         );
         return {
             statusCode: HttpStatus.OK,
