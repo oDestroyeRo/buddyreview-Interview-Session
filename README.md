@@ -10,6 +10,11 @@ Backend API for Note Talking
 ### Database
 * MongoDB
 
+## domo live in
+http://34.126.119.209/notes
+
+
+
 ## Require
 
 * docker
@@ -33,6 +38,8 @@ http://localhost/notes
 
 * Get all notes with sort field _id
     * http://localhost/notes?sort=asc&sortField=_id
+        * sort: [asc,desc]
+        * sortField: [_id,title,content,createAt,updateAt,tags]
 
 * Get all notes with sort field _id and specify tag
     * http://localhost/notes?sort=asc&sortField=_id&tags=meeting
